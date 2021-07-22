@@ -11,6 +11,7 @@ import {
   ColorMode,
   ColorModeContext,
   ThemeProvider,
+  ThemeTypings,
   useChakra,
 } from "@chakra-ui/system"
 import defaultTheme from "@chakra-ui/theme"
@@ -59,6 +60,10 @@ export interface UseToastOptions {
    */
   status?: AlertStatus
   /**
+   * The color scheme to be used in the toast.
+   */
+  colorScheme?: ThemeTypings["colorSchemes"] | (string & {}),
+  /**
    * The `id` of the toast.
    *
    * Mostly used when you need to prevent duplicate.
@@ -74,12 +79,13 @@ export interface UseToastOptions {
 export type IToast = UseToastOptions
 
 const Toast: React.FC<any> = (props) => {
-  const { status, variant, id, title, isClosable, onClose, description } = props
+  const { status, variant, colorScheme, id, title, isClosable, onClose, description } = props
 
   return (
     <Alert
       status={status}
       variant={variant}
+      colorScheme={colorScheme}
       id={id}
       alignItems="start"
       borderRadius="md"
